@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Lab3CSharp
 {
@@ -103,25 +104,25 @@ namespace Lab3CSharp
     }
     internal class Program
     {
-        static void Main(string[] args)
+        public static void task1()
         {
-            Console.WriteLine("Lab 3 ");
             // Приклад використання класу Money
             Money[] moneyWallet = new Money[5];
             moneyWallet[0] = new Money(20, 43);
             moneyWallet[1] = new Money(10, 50);
             moneyWallet[2] = new Money(50, 2);
-            moneyWallet[3] = new Money(100,3);
-            moneyWallet[4] = new Money(500,4);
-      
+            moneyWallet[3] = new Money(100, 3);
+            moneyWallet[4] = new Money(500, 4);
+
             // Виводимо інформацію про гаманець
-            foreach (Money a in moneyWallet) {
+            foreach (Money a in moneyWallet)
+            {
                 a.DisplayInfo();
             };
             Console.WriteLine("This was your money \n\n\n");
 
             Goods[] goods = new Goods[10];
-            goods[0] = new Goods("Ananas",53);
+            goods[0] = new Goods("Ananas", 53);
             goods[1] = new Goods("Forel(100g)", 40);
             goods[2] = new Goods("Aplle(fruit)", 10);
             goods[3] = new Goods("Chees(kg)", 200);
@@ -133,12 +134,13 @@ namespace Lab3CSharp
             goods[9] = new Goods("PowerGenerator", 100000);
             foreach (Goods a in goods)
             {
-               a.DisplayInfo();
+                a.DisplayInfo();
             }
             Console.WriteLine("This was goods we have \n\n\n");
 
 
-            foreach (Goods b in goods) {
+            foreach (Goods b in goods)
+            {
                 if (Money.IsEnoughMoney(b.Price))
                 {
                     Console.WriteLine($"You have enought money to bay {b.Name}, needed sum is {b.Price * Money.CalculateItemsToBuy(b.Price)} UAgrn to get {Money.CalculateItemsToBuy(b.Price)} pieces.");
@@ -150,7 +152,7 @@ namespace Lab3CSharp
 
             }
 
-          
+
             // Змінюємо кількість купюр у гаманці
             moneyWallet[3].Num = 28;
             moneyWallet[3].DisplayInfo();
@@ -167,10 +169,30 @@ namespace Lab3CSharp
                 }
 
             }
-
-
             // Виводимо загальну суму грошей у гаманці
             Console.WriteLine($"Total sum on vallet: {Money.Count} UAgrn.");
+        }
+        public static void task2()
+        {
+            Organization[] A = new Organization[3];
+            A[0] = new Oil_Gas_Company("OilTrade", 2540, "Patrol", "Natural", 4, 5, 10);
+            A[1] = new Oil_Gas_Company("OilManuf", 1140, "Dirt", "Blue", 3, 2, 4);
+            A[2] = new Oil_Gas_Company("GasTrans", 440, "Dirt", "Green", 4, 6, 5);
+            foreach (Organization a in A)
+            {
+                Console.WriteLine();
+                a.Show();
+            }
+        }
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Lab 3 ");
+            task1();
+            task2();
+
+
+         
         }
     }
     }
